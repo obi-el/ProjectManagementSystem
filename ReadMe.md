@@ -26,7 +26,7 @@ between them based on the system description below:</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
-background:white'>ìProfs can enter 4th year project topics, delete ones they no
+background:white'>‚ÄúProfs can enter 4th year project topics, delete ones they no
 longer offer, or archive them for later use. For a given 4th year project
 topic, they can enter a description, program restrictions, and the number of
 students required. Students can look up projects and apply for one that they
@@ -35,9 +35,9 @@ project coordinator can search for students without a project and send them a
 reminder. For the oral presentations, profs and students enter their
 availability. The 4th year project coordinator can allocate the oral
 presentations to rooms based on availability. This can be done manually or
-using a very simple ìbest effortî algorithm. For the final project, students
+using a very simple ‚Äúbest effort‚Äù algorithm. For the final project, students
 submit their reports online by a deadline specified by the 4th year project
-coordinator and enforced by the system.î</span></p>
+coordinator and enforced by the system.‚Äù</span></p>
 
 <p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
 background:white'>&nbsp;</span></p>
@@ -110,7 +110,7 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><img width=624 height=490 id=image01.png
-src="ReadMe_files/image001.gif"></p>
+src="ReadMe_files/image001.png"></p>
 
 </div>
 
