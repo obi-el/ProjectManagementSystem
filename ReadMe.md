@@ -43,12 +43,6 @@ coordinator and enforced by the system.”</span></p>
 background:white'>&nbsp;</span></p>
 
 <p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
-background:white'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
-background:white'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
 background:white'>Project Members:</span></p>
 
 <p class=MsoNormal><span style='font-size:10.5pt;line-height:115%;color:#333333;
@@ -79,35 +73,11 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Jiang Zening
 - Made maven Project, implemented sign up use case</span></p>
 
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Backlog:</span></p>
 
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><img width=624 height=490 id=image01.png
 src="ReadMe_files/image001.PNG"></p>
