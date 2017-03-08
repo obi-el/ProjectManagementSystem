@@ -10,13 +10,17 @@ public class  Student extends User {
     /*@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id = null;*/
-
+    @OneToOne
     private Project myProject;
 
-    public Student(){super();}
+    public Student(){
+        super();
+        myProject = null;
+    }
 
     public Student(String firstName, String lastName){
         super(firstName, lastName);
+        myProject = null;
     }
 
     public Project getMyProject() {

@@ -1,12 +1,11 @@
 package PMS;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.hibernate.bytecode.spi.ProxyFactoryFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by zeningjiang on 3/2/2017.
@@ -22,6 +21,9 @@ public class Project {
     private String description;
     private Professor supervisor;
 
+    private HashMap<String, Integer> programs;
+
+    @OneToMany
     private ArrayList<Student> members;
 
     public Project(){}
@@ -29,6 +31,7 @@ public class Project {
     public Project(String name){
         this.name = name;
         members = new ArrayList<Student>();
+        programs = new HashMap<String, Integer>();
     }
 
     public Professor getSupervisor() {
