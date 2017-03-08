@@ -110,7 +110,7 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></p>
 
 <p class=MsoNormal><img width=624 height=490 id=image01.png
-src="ReadMe_files/image001.gif"></p>
+src="ReadMe_files/image001.png"></p>
 
 </div>
 
