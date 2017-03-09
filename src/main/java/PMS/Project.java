@@ -1,12 +1,10 @@
 package PMS;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.hibernate.bytecode.spi.ProxyFactoryFactory;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by zeningjiang on 3/2/2017.
@@ -24,15 +22,14 @@ public class Project {
 
     private HashMap<String, Integer> programs;
 
-    //private ArrayList<Student> members;
     @OneToMany
-    Collection<User> members;
+    private List<Student> members;
 
     public Project(){}
 
     public Project(String name){
         this.name = name;
-        //members = new ArrayList<Student>();
+        members = new ArrayList<Student>();
         programs = new HashMap<String, Integer>();
     }
 
@@ -49,20 +46,19 @@ public class Project {
         return members;
     }*/
 
-
-    public Collection<User> getMembers(){
+    public List<Student> getMembers(){
         return members;
     }
 
     /*public void setMembers(ArrayList<Student> members) {
         this.members = members;
     }*/
-    public void setMembers(Collection<User> members){
+    public void setMembers(List<Student> members){
         this.members = members;
     }
 
-    public void addMembers(User user){
-        members.add(user);
+    public void addMembers(Student student){
+        members.add(student);
     }
 
     public String getName() {

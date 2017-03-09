@@ -2,6 +2,7 @@ package PMS;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by yashpatel on 3/8/2017.
@@ -15,7 +16,9 @@ public class User implements Serializable{
 
     protected String firstName;
     protected String lastName;
-    protected Project project;
+
+    @ManyToMany
+    protected List<Project> projects;
 
     public User(){}
 
@@ -48,13 +51,12 @@ public class User implements Serializable{
         this.lastName = lastName;
     }
 
-    @ManyToOne
-    public Project getProject(){
-        return project;
+    public List<Project> getProjects(){
+        return projects;
     }
 
-    public void setProject(Project project){
-        this.project = project;
+    public void setProject(List<Project> projects){
+        this.projects = projects;
     }
 
 
