@@ -1,14 +1,17 @@
 package PMS;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zeningjiang on 3/2/2017.
  */
+@Entity
 public class Professor extends User{
     @OneToMany
-    ArrayList<Project> activeProjects;
+    List<Project> activeProjects;
 
     public Professor(){super();}
 
@@ -22,11 +25,11 @@ public class Professor extends User{
         activeProjects.add(proj);
     }
 
-    public ArrayList<Project> getActiveProjects() {
+    public List<Project> getActiveProjects() {
         return activeProjects;
     }
 
-    public void setActiveProjects(ArrayList<Project> activeProjects) {
+    public void setActiveProjects(List<Project> activeProjects) {
         this.activeProjects = activeProjects;
     }
 

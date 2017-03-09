@@ -1,12 +1,13 @@
 package PMS;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by zeningjiang on 3/2/2017.
  */
 @Entity
-public class  Student extends User {
+public class  Student extends User{
     /*@Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id = null;*/

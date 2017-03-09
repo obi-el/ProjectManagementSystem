@@ -5,6 +5,7 @@ import org.hibernate.bytecode.spi.ProxyFactoryFactory;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -23,14 +24,15 @@ public class Project {
 
     private HashMap<String, Integer> programs;
 
+    //private ArrayList<Student> members;
     @OneToMany
-    private ArrayList<Student> members;
+    Collection<User> members;
 
     public Project(){}
 
     public Project(String name){
         this.name = name;
-        members = new ArrayList<Student>();
+        //members = new ArrayList<Student>();
         programs = new HashMap<String, Integer>();
     }
 
@@ -42,12 +44,25 @@ public class Project {
         this.supervisor = supervisor;
     }
 
+    /*@OneToMany(mappedBy = "project")
     public ArrayList<Student> getMembers() {
+        return members;
+    }*/
+
+
+    public Collection<User> getMembers(){
         return members;
     }
 
-    public void setMembers(ArrayList<Student> members) {
+    /*public void setMembers(ArrayList<Student> members) {
         this.members = members;
+    }*/
+    public void setMembers(Collection<User> members){
+        this.members = members;
+    }
+
+    public void addMembers(User user){
+        members.add(user);
     }
 
     public String getName() {
@@ -65,6 +80,7 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     public Integer getId() {
         return id;

@@ -1,11 +1,13 @@
 package PMS;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by yashpatel on 3/8/2017.
  */
-public class User {
+@Entity
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -13,6 +15,7 @@ public class User {
 
     protected String firstName;
     protected String lastName;
+    protected Project project;
 
     public User(){}
 
@@ -44,4 +47,16 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @ManyToOne
+    public Project getProject(){
+        return project;
+    }
+
+    public void setProject(Project project){
+        this.project = project;
+    }
+
+
+
 }
