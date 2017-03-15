@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @org.springframework.stereotype.Controller
 public class Controller {
 
+
+
     private UserRepo repo;
     public Controller(UserRepo name){
-
         repo =name;
-        Assert.notNull(repo, "Repository must not be null!");
+
     }
 
     @GetMapping("/home")
@@ -26,4 +27,7 @@ public class Controller {
     }
 
 
+    public UserRepo getRepo() {
+        return repo;
+    }
 }
