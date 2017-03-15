@@ -7,13 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src = "Authentication.js"></script>
+    <link rel="stylesheet" src="homepage.css"/>
 </head>
 <body>
 <div class="jumbotron text-center">
     <h1 >Welcome to the Project Management System!</h1>
 </div>
-<div class="row">
-    <div class = "mx-auto">
+
+    <div class = "container center">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign In</a></li>
             <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
@@ -26,7 +27,7 @@
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-    <div class="tab-content col-md-4 mx-auto">
+    <div class="tab-content col-md-4 center">
         <div role="tabpanel" class="tab-pane fade active" id="home">
             <form class="form-signin" th:action="@{/login}" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
@@ -48,7 +49,7 @@
         </div>
     </div>
     </div>
-</div>
+
 
 </body>
 </html>
