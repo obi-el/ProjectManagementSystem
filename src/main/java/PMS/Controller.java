@@ -1,8 +1,11 @@
 package PMS;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -15,9 +18,17 @@ public class Controller {
 
 
 
-    private UserRepo repo;
-    public Controller(UserRepo name){
-        repo =name;
+    private StudentRepo studentRepo;
+
+
+    private profRepo profRepo;
+
+
+
+    @Autowired
+    public Controller(StudentRepo name, profRepo repo){
+        this.studentRepo =name;
+        this.profRepo = repo;
 
     }
 
@@ -27,7 +38,27 @@ public class Controller {
     }
 
 
-    public UserRepo getRepo() {
-        return repo;
+    public StudentRepo getStudentRepo() {
+        return studentRepo;
     }
+
+    public PMS.profRepo getProfRepo() {
+        return profRepo;
+    }
+
+
+
+    @GetMapping(value ="/signin")
+    public void signIn(@RequestParam(value="email" , required = true)String email, @RequestParam(value="password" , required = true)String password){
+        String ret;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String pw = encoder.encode(password);
+
+    }
+
+    @PostMapping(value ="/register")
+    public void registration(){
+
+    }
+
 }

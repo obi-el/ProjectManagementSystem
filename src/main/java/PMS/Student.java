@@ -14,11 +14,10 @@ public class  Student extends User{
 
     public Student(){
         super();
-        myProject = null;
     }
 
-    public Student(String firstName, String lastName){
-        super(firstName, lastName);
+    public Student(String firstName, String lastName, String email){
+        super(firstName, lastName, email);
         myProject = null;
     }
 
