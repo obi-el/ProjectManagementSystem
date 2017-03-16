@@ -17,24 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Controller {
 
 
-
     private StudentRepo studentRepo;
 
 
     private profRepo profRepo;
 
 
-
     @Autowired
-    public Controller(StudentRepo name, profRepo repo){
-        this.studentRepo =name;
+    public Controller(StudentRepo name, profRepo repo) {
+        this.studentRepo = name;
         this.profRepo = repo;
 
     }
 
-    @GetMapping("/home")
-    public String firstPage(Model model){
-        model.addAttribute("login", new User());
+    @GetMapping({"/home", "", "/"})
+    public String firstPage(Model model) {
+       model.addAttribute("login", new User());
         return "home";
     }
 
@@ -48,23 +46,20 @@ public class Controller {
     }
 
 
-
-    @PostMapping(value ="/signin")
-    public String signIn(Model model, @RequestParam(value="email" , required = true)String email, @RequestParam(value="password" , required = true)String password){
+    @PostMapping(value = "/signin")
+    public String signIn(Model model, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password) {
         String ret;
-        model.addAttribute("login", new Login());
+        model.addAttribute("login", new User());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(studentRepo.existsByEmail(email) && encoder.matches(password, studentRepo.findByEmail(email).getPassword())){
+        if (studentRepo.existsByEmail(email) && encoder.matches(password, studentRepo.findByEmail(email).getPassword())) {
             model.addAttribute("user", studentRepo.findByEmail(email));
             model.addAttribute("signedin", true);
             ret = "studentPage";
-        }
-        else if(profRepo.existsByEmail(email) && encoder.matches(password, profRepo.findByEmail(email).getPassword())){
+        } else if (profRepo.existsByEmail(email) && encoder.matches(password, profRepo.findByEmail(email).getPassword())) {
             model.addAttribute("user", profRepo.findByEmail(email));
             model.addAttribute("signedin", true);
             ret = "profPage";
-        }
-        else{
+        } else {
             model.addAttribute("signedin", false);
             ret = "home";
         }
@@ -73,17 +68,29 @@ public class Controller {
         return ret;
     }
 
-    @GetMapping("/signin")
-    public String homeForm(Model model){
-        model.addAttribute("login", new Login());
-        return "home";
+
+
+    @PostMapping(value = "/register")
+    public String registration(Model model, @RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "userType", required = true) String userType) {
+        String ret;
+        model.addAttribute("login", new Register());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String pw = encoder.encode(password);
+        if (userType.equals("student")) {
+            Student s = new Student(firstName, lastName, email, pw);
+            model.addAttribute("user", s);
+            model.addAttribute("signedin", true);
+            studentRepo.save(s);
+            ret = "studentPage";
+        } else if (userType.equals("professor")) {
+            Professor p = new Professor(firstName, lastName, email, pw);
+            model.addAttribute("user", p);
+            model.addAttribute("signedin", true);
+            profRepo.save(p);
+            ret = "profPage";
+        } else ret = "error";
+
+        return ret;
+
     }
-
-    @PostMapping(value ="/register")
-    public void registration(Model model ,@RequestParam(value="firstName" , required = true)String firstName, @RequestParam(value="lastName" , required = true)String lastName, @RequestParam(value="email" , required = true)String email, @RequestParam(value="password" , required = true)String password){
-
-
-
-    }
-
 }

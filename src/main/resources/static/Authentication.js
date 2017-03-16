@@ -4,6 +4,8 @@
 
 
 $(document).ready(function() {
+
+
     $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
@@ -15,6 +17,20 @@ $(document).ready(function() {
     })
 });
 
-function signin(){
+function signup(){
+
+    var userType;
+if(document.getElementById('rad1').checked) {
+    userType = $("#rad1").val();
+}else if(document.getElementById('rad2').checked) {
+    userType = $("#rad2").val();
+}
+
+    $.post('http://localhost:8080/register', { firstName : "" + $("#firstName").val(),  lastName : "" + $("#lastName").val(), email: "" + $("#signupEmail").val(),  password : "" + $("#signupPassword").val(), userType : userType},
+        function(returnedData){
+
+        }).fail(function(data){
+        console.log(data.error);
+    });
 
 }

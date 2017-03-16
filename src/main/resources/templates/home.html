@@ -20,37 +20,31 @@
             <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
         </ul>
 
-    <div th:if="${signedin} == false">
-        <script type="text/javascript">
-            alert("Invalid username or password.")
-        </script>
-        <p style="text-decoration: underline; text-decoration: #ff0008; color: #ff0008"><span class="errHighlight">Invalid username or password.</span>></p>
-    </div>
-
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+        <div th:if="${signedin} == false">
+            <script>
+                alert("Invalid Email Address or Password");
+            </script>
+        </div>
     <div class="tab-content col-md-4 center">
-        <div role="tabpanel" class="tab-pane fade active" id="home">
-            <form class="form-signin" th:action="@{/signin}" th:object="${login}" method="post">
+        <div class="tab-pane fade" role="tabpanel" id="home">
+            <form class="form-signin show active" th:action="@{/signin}" th:object="${login}" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" th:field="*{email}"  class="form-control" placeholder="Email address" required="" autofocus=""/>
+                <input type="email" id="inputEmail" th:field="*{email}"  class="form-control" placeholder="Email Address" required="" autofocus=""/>
                 <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
 
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="register">
-            <form class="form-signin">
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" id="lastName" class="form-control" placeholder="First Name" required="" autofocus=""/>
-                <input type="text" id="firstName" class="form-control" placeholder="Last Name" required="" autofocus=""/>
-                <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-                <input type="password" id="signupPassword" class="form-control" placeholder="Password" required=""/>
+        <div class="tab-pane fade" role="tabpanel" id="register">
+            <form class="form-signin" th:action="@{/register}" th:object="${login}" method="post">
+                <input type="text" id="firstName" th:field="*{firstName}"  class="form-control" placeholder="First Name" required="" autofocus=""/>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last Name" required="" autofocus=""/>
+                <input type="email" id="signupEmail" th:field="*{email}" class="form-control" placeholder="Email address" required="" autofocus=""/>
+                <input type="password" id="signupPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
                 <br/>
-                <input type="radio" name="userType" value="professor"/>Professor            <input type="radio" name="userType" value="student"/>Student
+                <input type="radio" id = "rad1" name="userType" value="professor"/>Professor      <input type="radio" id = "rad2" name="userType" value="student"/>Student
                 <br/>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="signup">Register</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" >Register</button>
             </form>
         </div>
     </div>

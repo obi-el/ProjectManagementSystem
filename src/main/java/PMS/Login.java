@@ -1,17 +1,11 @@
 package PMS;
 
-import org.springframework.context.annotation.Bean;
-
 /**
  * Created by obinnaelobi on 3/16/2017.
  */
 public class Login {
 
     private String email;
-    private String password;
-
-
-    public Login(){}
 
     public String getEmail() {
         return email;
@@ -29,8 +23,7 @@ public class Login {
         this.password = password;
     }
 
+    private String password;
 
-
-
-
+    public Login(){}
 }
