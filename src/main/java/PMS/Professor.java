@@ -15,8 +15,8 @@ public class Professor extends User{
 
     public Professor(){super();}
 
-    public Professor(String firstName, String lastName, String email){
-        super(firstName, lastName, email);
+    public Professor(String firstName, String lastName, String email, String password){
+        super(firstName, lastName, email, password);
         activeProjects = new ArrayList<Project>();
     }
 

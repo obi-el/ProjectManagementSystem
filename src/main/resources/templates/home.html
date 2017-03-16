@@ -20,8 +20,11 @@
             <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
         </ul>
 
-    <div th:if="${param.error}">
-        Invalid username and password.
+    <div th:if="${signedin} == false">
+        <script type="text/javascript">
+            alert("Invalid username or password.")
+        </script>
+        <p style="text-decoration: underline; text-decoration: #ff0008; color: #ff0008"><span class="errHighlight">Invalid username or password.</span>></p>
     </div>
 
     <div th:if="${param.logout}">
@@ -29,11 +32,11 @@
     </div>
     <div class="tab-content col-md-4 center">
         <div role="tabpanel" class="tab-pane fade active" id="home">
-            <form class="form-signin" th:action="@{/login}" method="post">
+            <form class="form-signin" th:action="@{/signin}" th:object="${login}" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""/>
-                <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="signin()">Sign in</button>
+                <input type="email" id="inputEmail" th:field="*{email}"  class="form-control" placeholder="Email address" required="" autofocus=""/>
+                <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
 
         </div>

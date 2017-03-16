@@ -12,5 +12,7 @@ import java.util.List;
 public interface profRepo extends CrudRepository<Professor, Integer>{
     List<Professor> findByFirstName(String firstname);
     List<Professor> findAll();
+    boolean existsByEmail(String email);
+    Student findByEmail(String Email);
 
 }
