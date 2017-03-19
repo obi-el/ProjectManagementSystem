@@ -26,11 +26,7 @@ if(document.getElementById('rad1').checked) {
     userType = $("#rad2").val();
 }
 
-    $.post('http://localhost:8080/register', { firstName : "" + $("#firstName").val(),  lastName : "" + $("#lastName").val(), email: "" + $("#signupEmail").val(),  password : "" + $("#signupPassword").val(), userType : userType},
-        function(returnedData){
+    $.post('http://localhost:8080/register', { firstName : "" + $("#firstName").val(),  lastName : "" + $("#lastName").val(), email: "" + $("#signupEmail").val(),  password : "" + $("#signupPassword").val(), userType : userType});
 
-        }).fail(function(data){
-        console.log(data.error);
-    });
 
 }

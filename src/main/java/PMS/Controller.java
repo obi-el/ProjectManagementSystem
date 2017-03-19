@@ -88,7 +88,7 @@ public class Controller {
             model.addAttribute("signedin", true);
             profRepo.save(p);
             ret = "profPage";
-        } else ret = "error";
+        } else ret = "redirect:error";
 
         return ret;
 
