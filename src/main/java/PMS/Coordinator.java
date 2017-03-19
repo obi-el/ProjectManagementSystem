@@ -11,8 +11,8 @@ public class Coordinator extends User{
 
     private ArrayList<Student> students;
 
-    public Coordinator(String firstName, String lastName){
-        super(firstName, lastName);
+    public Coordinator(String firstName, String lastName, String email, String password){
+        super(firstName, lastName, email, password);
         students = new ArrayList<Student>();
     }
 

@@ -4,3 +4,8 @@
     border: 3px solid green;
     padding: 10px;
 }
+
+span.errhighlight{
+    background-color: #ff0008;
+    opacity: 0.6;
+}

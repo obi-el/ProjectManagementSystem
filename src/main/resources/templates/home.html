@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns= "http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns= "http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  >
 <head>
     <title>Project Management System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src = "Authentication.js"></script>
+    <script type="text/javascript" src = "/static/Authentication.js"></script>
     <link rel="stylesheet" src="homepage.css"/>
 </head>
 <body>
@@ -20,31 +20,31 @@
             <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
         </ul>
 
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+        <div th:if="${signedin} == false">
+            <script>
+                alert("Invalid Email Address or Password");
+            </script>
+        </div>
     <div class="tab-content col-md-4 center">
-        <div role="tabpanel" class="tab-pane fade active" id="home">
-            <form class="form-signin" th:action="@{/login}" method="post">
+        <div class="tab-pane fade" role="tabpanel" id="home">
+            <form class="form-signin show active" th:action="@{/signin}" th:object="${login}" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""/>
+                <input type="email" id="inputEmail" th:field="*{email}"  class="form-control" placeholder="Email Address" required="" autofocus=""/>
+                <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
 
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="register">
-            <form class="form-signin">
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" id="lastName" class="form-control" placeholder="First Name" required="" autofocus=""/>
-                <input type="text" id="firstName" class="form-control" placeholder="Last Name" required="" autofocus=""/>
-                <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-                <input type="password" id="signupPassword" class="form-control" placeholder="Password" required=""/>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <div class="tab-pane fade" role="tabpanel" id="register">
+            <form class="form-signin" th:action="@{/register}" th:object="${login}" method="post">
+                <input type="text" id="firstName" th:field="*{firstName}"  class="form-control" placeholder="First Name" required="" autofocus=""/>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last Name" required="" autofocus=""/>
+                <input type="email" id="signupEmail" th:field="*{email}" class="form-control" placeholder="Email address" required="" autofocus=""/>
+                <input type="password" id="signupPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
+                <br/>
+                <input type="radio" id = "rad1" name="userType" value="professor"/>Professor      <input type="radio" id = "rad2" name="userType" value="student"/>Student
+                <br/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" onsubmit="signup()">Register</button>
             </form>
         </div>
     </div>
