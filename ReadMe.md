@@ -68,7 +68,7 @@ Wrote System Models.</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Mathieu
 LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 
-<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Jiang Zening
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Zening Jiang
 - Made maven Project, implemented sign up use case</span></p>
 
 
