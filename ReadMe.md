@@ -84,6 +84,8 @@ LeBlanc - implemented Coordinator into Repos and Register Page, started work on 
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Yash Patel -
 Implemented Professor's view - frontend and backend</span></p>
 
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Zening Jiang - Finished upload files, logout, display in student page</span></p>
+
 </div>
 
 </body>
