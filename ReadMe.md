@@ -78,6 +78,9 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Obinna Elobi
 - Session Management , Finished authentication and authorization with spring security, started student Picking project function, logout function</span></p>
 
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Mathieu
+LeBlanc - implemented Coordinator into Repos and Register Page, started work on Coordinator Page</span></p>
+
 </div>
 
 </body>
