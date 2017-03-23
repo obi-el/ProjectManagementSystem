@@ -22,18 +22,21 @@ public class Controller {
 
 
     private StudentRepo studentRepo;
-    private ProjRepo projRepo;
-
     private profRepo profRepo;
+    private CoordRepo coordRepo;
+    private ProjRepo projRepo;
 
 
     @Autowired
-    public Controller(StudentRepo name, profRepo repo, ProjRepo projRepo) {
-        this.studentRepo = name;
-        this.profRepo = repo;
-        this.projRepo = projRepo;
+
+    public Controller(StudentRepo studentRepo, profRepo profRepo, ProjRepo projRepo, CoordRepo cordRepo) {
+        this.studentRepo = studentRepo;
+        this.profRepo = profRepo;
+        this.coordRepo = cordRepo;
+         this.projRepo = projRepo;
         projRepo.save(new Project("default", "do a whole bunch of stuff"));
         projRepo.save(new Project("default2", "do a whole bunch of stuff twice"));
+
     }
 
     @GetMapping({"/home", "", "/"})
@@ -67,7 +70,7 @@ public class Controller {
     public StudentRepo getStudentRepo() {
         return studentRepo;
     }
-
+    public CoordRepo getCoordinatorRepo() { return coordRepo; }
     public PMS.profRepo getProfRepo() {
         return profRepo;
     }
@@ -86,14 +89,18 @@ public class Controller {
             session.setAttribute(SessionVariables.user, profRepo.findByEmail(email));
            session.setAttribute(SessionVariables.signedin, true);
             ret = "profPage";
+        } else if (coordRepo.existsByEmail(email) && encoder.matches(password, coordRepo.findByEmail(email).getPassword())) {
+            model.addAttribute("user", coordRepo.findByEmail(email));
+            model.addAttribute("signedin", true);
+            ret = "coordPage";
         } else {
             session.setAttribute(SessionVariables.signedin, false);
             ret = "home";
         }
 
-
         return ret;
     }
+
 
     @GetMapping(value = "/logoutPage")
     public String logout(HttpSession session){
@@ -123,6 +130,7 @@ public class Controller {
         return "studentPage";
     }
 
+
     @PostMapping(value = "/register")
     public String registration(Model model,HttpSession session, @RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "userType", required = true) String userType) {
         String ret;
@@ -145,8 +153,18 @@ public class Controller {
            session.setAttribute(SessionVariables.user, p);
            session.setAttribute(SessionVariables.signedin, true);
             profRepo.save(p);
-            ret = "redirect:profPage";
-        } else ret = "redirect:error";
+
+              ret = "redirect:profPage";
+        } else if (userType.equals("coordinator")) {
+            Coordinator c = new Coordinator(firstName, lastName, email, pw);
+            model.addAttribute("user", c);
+            model.addAttribute("signedin", true);
+            coordRepo.save(c);
+            ret = "coordPage";
+        }
+
+        else ret = "redirect:error";
+
 
         return ret;
 

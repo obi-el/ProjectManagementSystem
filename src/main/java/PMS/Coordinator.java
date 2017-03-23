@@ -1,10 +1,12 @@
 package PMS;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
 /**
  * Created by yashpatel on 3/8/2017.
  */
+@Entity
 public class Coordinator extends User{
 
     public Coordinator(){super();}
