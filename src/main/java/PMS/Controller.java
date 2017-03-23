@@ -18,16 +18,15 @@ public class Controller {
 
 
     private StudentRepo studentRepo;
-
-
     private profRepo profRepo;
+    private CoordRepo coordRepo;
 
 
     @Autowired
-    public Controller(StudentRepo name, profRepo repo) {
-        this.studentRepo = name;
-        this.profRepo = repo;
-
+    public Controller(StudentRepo studentRepo, profRepo profRepo, CoordRepo cordRepo) {
+        this.studentRepo = studentRepo;
+        this.profRepo = profRepo;
+        this.coordRepo = cordRepo;
     }
 
     @GetMapping({"/home", "", "/"})
@@ -40,7 +39,7 @@ public class Controller {
     public StudentRepo getStudentRepo() {
         return studentRepo;
     }
-
+    public CoordRepo getCoordinatorRepo() { return coordRepo; }
     public PMS.profRepo getProfRepo() {
         return profRepo;
     }
@@ -59,16 +58,17 @@ public class Controller {
             model.addAttribute("user", profRepo.findByEmail(email));
             model.addAttribute("signedin", true);
             ret = "profPage";
+        } else if (coordRepo.existsByEmail(email) && encoder.matches(password, coordRepo.findByEmail(email).getPassword())) {
+            model.addAttribute("user", coordRepo.findByEmail(email));
+            model.addAttribute("signedin", true);
+            ret = "coordPage";
         } else {
             model.addAttribute("signedin", false);
             ret = "home";
         }
 
-
         return ret;
     }
-
-
 
     @PostMapping(value = "/register")
     public String registration(Model model, @RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "userType", required = true) String userType) {
@@ -88,7 +88,15 @@ public class Controller {
             model.addAttribute("signedin", true);
             profRepo.save(p);
             ret = "profPage";
-        } else ret = "redirect:error";
+        } else if (userType.equals("coordinator")) {
+            Coordinator c = new Coordinator(firstName, lastName, email, pw);
+            model.addAttribute("user", c);
+            model.addAttribute("signedin", true);
+            coordRepo.save(c);
+            ret = "coordPage";
+        }
+
+        else ret = "redirect:error";
 
         return ret;
 

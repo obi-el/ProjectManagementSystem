@@ -24,6 +24,8 @@ if(document.getElementById('rad1').checked) {
     userType = $("#rad1").val();
 }else if(document.getElementById('rad2').checked) {
     userType = $("#rad2").val();
+}else if(document.getElementById('rad3').checked) {
+    userType = $("#rad3").val();
 }
 
     $.post('http://localhost:8080/register', { firstName : "" + $("#firstName").val(),  lastName : "" + $("#lastName").val(), email: "" + $("#signupEmail").val(),  password : "" + $("#signupPassword").val(), userType : userType});
