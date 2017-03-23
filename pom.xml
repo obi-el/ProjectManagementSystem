@@ -56,6 +56,21 @@
             <artifactId>spring-security-web</artifactId>
             <version>4.2.3.BUILD-SNAPSHOT</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.allanditzel/spring-security-csrf-token-filter -->
+        <dependency>
+            <groupId>com.allanditzel</groupId>
+            <artifactId>spring-security-csrf-token-filter</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -80,8 +95,25 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>PMS.Application</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+
+            </plugin>
+
+
         </plugins>
     </build>
+
 
 
 </project>

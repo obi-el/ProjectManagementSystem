@@ -18,6 +18,8 @@ public class Project {
 
     private String name;
     private String description;
+
+    @ManyToOne
     private Professor supervisor;
 
     private HashMap<String, Integer> programs;
@@ -27,8 +29,9 @@ public class Project {
 
     public Project(){}
 
-    public Project(String name){
+    public Project(String name, String description){
         this.name = name;
+        this.description = description;
         members = new ArrayList<Student>();
         programs = new HashMap<String, Integer>();
     }

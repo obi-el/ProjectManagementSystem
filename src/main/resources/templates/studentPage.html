@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns= "http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Student Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="canonical" href="https://www.w3schools.com/bootstrap/bootstrap_modal.asp"/>
+    <script src = "studentJs.js"></script>
+</head>
+<body>
+
+<div class="jumbotron row">
+    <div class="col-sm-4">
+        <h3 id = "projName"></h3>
+        <br/>
+        <button type="button" id = "but1" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#myModal">Pick Project</button>
+        <div th:if="${session.user.hasProject}">
+            <script th:inline="javascript">
+                $("#projName").append([[${project.name}]]);
+                $("#but1").disabled(true);
+
+            </script>
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Projects</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ol class = "list-group" id="javaList"></ol>
+                        <script>
+                            $.get( "/allProjects", function( data ) {
+                                $.each(data, function(i,item) {
+                                    $("#javaList").append('<button type="button" id = "pick" class="list-group-item list-group-item-action" onclick="pickProject(this)" value="">' + data[i].name + ' </button>');
+                                });
+                            });
+
+                            function pickProject(el){
+
+                                alert($(el).text());
+                                $.post('/studentPage/pickProject', { projectName : "" + $(el).text()});
+
+                            };
+                        </script>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <h3>Current Project</h3>
+    </div>
+    <div class="col-sm-4">
+        <br/>
+        <button type="button" class="btn btn-info btn-sm">Submit</button>
+        <h3>Proposal</h3>
+    </div>
+    <div class="col-sm-4">
+        <div class="well">
+            <button type="submit" id = "logout" class = "btn btn-danger" onclick="myLogout()" >logout</button>
+            <script>
+                function myLogout(){
+                    $.post("/logout");
+                };
+            </script>
+        </div>
+        <div class="well">
+            <p>Welcome </p>
+           <p th:text="${session.user.firstName}"></p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

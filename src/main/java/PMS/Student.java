@@ -14,11 +14,10 @@ public class  Student extends User{
 
     public Student(){
         super();
-        myProject = null;
     }
 
-    public Student(String firstName, String lastName){
-        super(firstName, lastName);
+    public Student(String firstName, String lastName, String email, String password){
+        super(firstName, lastName, email,password);
         myProject = null;
     }
 
@@ -29,9 +28,6 @@ public class  Student extends User{
     public void setMyProject(Project myProject) {
         this.myProject = myProject;
     }
-
-
-
 
 
 }

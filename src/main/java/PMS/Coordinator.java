@@ -1,18 +1,20 @@
 package PMS;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
 /**
  * Created by yashpatel on 3/8/2017.
  */
+@Entity
 public class Coordinator extends User{
 
     public Coordinator(){super();}
 
     private ArrayList<Student> students;
 
-    public Coordinator(String firstName, String lastName){
-        super(firstName, lastName);
+    public Coordinator(String firstName, String lastName, String email, String password){
+        super(firstName, lastName, email, password);
         students = new ArrayList<Student>();
     }
 
