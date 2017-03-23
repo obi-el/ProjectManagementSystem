@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -12,7 +12,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -37,45 +38,93 @@
         <h1>4th Year Project</h1>
     </div>
 
+    <div>
+        <form th:action="@{/studentPage}" th:object="${user}" method="post">
+            <h1>Project</h1>
+            <p>${user.projects[0].name}</p>
+        </form>
+    </div>
+
+    <div>
+        <form th:action="@{/studentPage}" th:object="${user}" method="post">
+            <h1>Supervisor</h1>
+                <p>${user.projects[0].supervisor}</p>
+        </form>
+    </div>
+
 
     <div class="page-header">
         <h1>Group Members</h1>
     </div>
 
     <div class="row">
+
         <div class="col-md-6">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Student Number</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
+            <form th:action="@{/studentPage}" th:object="${user}" method="post">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>${projects[0].members[0].id}</td>
+                        <td>${projects[0].members[0].firstName}</td>
+                        <td>${projects[0].members[0].lastName}</td>
+                        <td>${projects[0].members[0].email}</td>
+                    </tr>
+                    <tr>
+                        <td>${projects[0].members[1].id}</td>
+                        <td>${projects[0].members[1].firstName}</td>
+                        <td>${projects[0].members[1].lastName}</td>
+                        <td>${projects[0].members[1].email}</td>
+                    </tr>
+                    <tr>
+                        <td>${projects[0].members[2].id}</td>
+                        <td>${projects[0].members[2].firstName}</td>
+                        <td>${projects[0].members[2].lastName}</td>
+                        <td>${projects[0].members[2].email}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
+
+    <div class="page-header">
+        <h1>Proposal</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+    <span class="btn btn-primary btn-file">
+        <input type="file"/></span>
+        <span class="fileupload-preview"></span>
+    </div>
+
+    <div class="page-header">
+        <h1>Progress Report</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+    <span class="btn btn-primary btn-file">
+        <input type="file"/></span>
+        <span class="fileupload-preview"></span>
+    </div>
+
+    <div class="page-header">
+        <h1>Final Report</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+    <span class="btn btn-primary btn-file">
+        <input type="file"/></span>
+        <span class="fileupload-preview"></span>
+    </div>
+
 </div>
 
 
