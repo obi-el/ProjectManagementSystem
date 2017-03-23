@@ -81,6 +81,9 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Mathieu
 LeBlanc - implemented Coordinator into Repos and Register Page, started work on Coordinator Page</span></p>
 
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Yash Patel -
+Implemented Professor's view - frontend and backend</span></p>
+
 </div>
 
 </body>
