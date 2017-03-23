@@ -76,9 +76,9 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Backlog:</span></p>
 
-
-<p class=MsoNormal><img width=624 height=490 id=image01.png
-src="ReadMe_files/image001.PNG"></p>
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Milestone 2:</span></p>
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Obinna Elobi
+- Session Management , Finished authentication and authorization with spring security, started student Picking project function, logout function</span></p>
 
 </div>
 
