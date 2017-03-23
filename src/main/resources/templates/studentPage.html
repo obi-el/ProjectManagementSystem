@@ -70,10 +70,10 @@
     </div>
     <div class="col-sm-4">
         <div class="well">
-            <button type="submit" id = "logout" class = "btn btn-danger" onclick="myLogout()" >logout</button>
+            <button type="submit" id = "logout" class = "btn btn-danger">logout</button>
             <script>
-                function myLogout(){
-                    $.post("/logout");
+                document.getElementById("logout").onclick = function () {
+                    location.href = "/logoutPage";
                 };
             </script>
         </div>
