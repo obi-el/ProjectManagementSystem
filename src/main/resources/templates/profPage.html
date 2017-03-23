@@ -24,6 +24,12 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#setting">Setting</a></li>
+                <li><a href="#logout" onclick="myLogout()">Logout</a></li>
+                <script>
+                function myLogout(){
+                    $.post("/logout");
+                    };
+                 </script>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
