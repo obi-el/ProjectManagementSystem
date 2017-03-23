@@ -16,11 +16,11 @@
 
     <div class = "container center">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign In</a></li>
+            <li role="presentation" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign In</a></li>
             <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
         </ul>
 
-        <div th:if="${signedin} == false">
+        <div th:if="${session.signedin} == false">
             <script>
                 alert("Invalid Email Address or Password");
             </script>
@@ -29,21 +29,27 @@
         <div class="tab-pane fade" role="tabpanel" id="home">
             <form class="form-signin show active" th:action="@{/signin}" th:object="${login}" method="post">
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" th:field="*{email}"  class="form-control" placeholder="Email Address" required="" autofocus=""/>
-                <input type="password" id="inputPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
+                <input type="email" id="inputEmail" name =  "username" th:field="*{email}"  class="form-control" placeholder="Email Address" required="" autofocus=""/>
+                <input type="password" id="password" name = "password" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
 
         </div>
         <div class="tab-pane fade" role="tabpanel" id="register">
             <form class="form-signin" th:action="@{/register}" th:object="${login}" method="post">
-                <input type="text" id="firstName" th:field="*{firstName}"  class="form-control" placeholder="First Name" required="" autofocus=""/>
-                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" placeholder="Last Name" required="" autofocus=""/>
-                <input type="email" id="signupEmail" th:field="*{email}" class="form-control" placeholder="Email address" required="" autofocus=""/>
-                <input type="password" id="signupPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
+                <input type="text" id="firstName" name ="firstName" th:field="*{firstName}"  class="form-control" placeholder="First Name" required="" autofocus=""/>
+                <input type="text" id="lastName" name ="lastName" th:field="*{lastName}" class="form-control" placeholder="Last Name" required="" autofocus=""/>
+                <input type="email" id="signupEmail" name ="signupEmail" th:field="*{email}" class="form-control" placeholder="Email address" required="" autofocus=""/>
+                <input type="password" id="signupPassword" name ="signupPassword" th:field="*{password}" class="form-control" placeholder="Password" required=""/>
                 <br/>
                 <input type="radio" id = "rad1" name="userType" value="professor"/>Professor      <input type="radio" id = "rad2" name="userType" value="student"/>Student      <input type="radio" id = "rad3" name="userType" value="coordinator"/>Coordinator
                 <br/>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" onsubmit="signup()">Register</button>
             </form>
         </div>

@@ -25,17 +25,26 @@ public class User implements Serializable{
     protected String email;
 
     protected String password;
+    protected boolean hasProject;
 
-    @ManyToMany
-    protected List<Project> projects;
+
 
     public User(){}
+
+    public boolean isHasProject() {
+        return hasProject;
+    }
+
+    public void setHasProject(boolean hasProject) {
+        this.hasProject = hasProject;
+    }
 
     public User(String firstName, String lastName, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.hasProject = false;
     }
 
     public String getPassword() {
@@ -76,14 +85,6 @@ public class User implements Serializable{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public List<Project> getProjects(){
-        return projects;
-    }
-
-    public void setProject(List<Project> projects){
-        this.projects = projects;
     }
 
 

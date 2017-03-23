@@ -1,6 +1,7 @@
 package PMS;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,18 @@ public class Professor extends User{
     @OneToMany
     List<Project> activeProjects;
 
+    @OneToMany
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    @OneToMany
+    List<Project> projects;
+
     public Professor(){super();}
 
     public Professor(String firstName, String lastName, String email, String password){
@@ -20,8 +33,8 @@ public class Professor extends User{
         activeProjects = new ArrayList<Project>();
     }
 
-    public void createProject(String name){
-        Project proj = new Project(name);
+    public void createProject(String name,String  description){
+        Project proj = new Project(name, description);
         activeProjects.add(proj);
     }
 
