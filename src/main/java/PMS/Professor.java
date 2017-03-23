@@ -32,10 +32,22 @@ public class Professor extends User{
         super(firstName, lastName, email, password);
         activeProjects = new ArrayList<Project>();
     }
-
-    public void createProject(String name,String  description){
+    /**
+     * create projects
+     * @param name - project title
+     */
+    public void createProject(String name, String description){
         Project proj = new Project(name, description);
         activeProjects.add(proj);
+    }
+
+    /**
+     * assigns student to a particular project
+     * @param p - project to be assigned to
+     * @param s - student to be assigned
+     */
+    public void assignStudent(Project p, Student s){
+        p.addMembers(s);
     }
 
     public List<Project> getActiveProjects() {
