@@ -21,7 +21,6 @@ public class Project {
 
     @ManyToOne
     private Professor supervisor;
-
     private HashMap<String, Integer> programs;
 
     @OneToMany

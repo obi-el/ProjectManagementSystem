@@ -158,7 +158,7 @@ public class Controller {
         } else if (userType.equals("coordinator")) {
             Coordinator c = new Coordinator(firstName, lastName, email, pw);
             model.addAttribute("user", c);
-            model.addAttribute("signedin", true);
+            model.addAttribute(SessionVariables.signedin, true);
             coordRepo.save(c);
             ret = "coordPage";
         }

@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Entity
 public class Professor extends User{
+
     @OneToMany
     List<Project> activeProjects;
 
@@ -44,6 +45,10 @@ public class Professor extends User{
 
     public void setActiveProjects(List<Project> activeProjects) {
         this.activeProjects = activeProjects;
+    }
+
+    public void giveGrade(Deliverable dev, String grade){
+        dev.setGrade(grade);
     }
 
 }
