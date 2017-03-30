@@ -10,6 +10,16 @@ public class Deliverable {
     private Date deadline;
     private String name, description;
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    private String grade;
+
     public Deliverable(){}
 
     public Deliverable(String name, Date deadline){
