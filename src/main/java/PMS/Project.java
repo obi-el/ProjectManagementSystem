@@ -21,6 +21,10 @@ public class Project {
 
     @ManyToOne
     private Professor supervisor;
+
+    @OneToMany
+    private List<Deliverable> deliverables;
+
     private HashMap<String, Integer> programs;
 
     @OneToMany
@@ -31,6 +35,7 @@ public class Project {
     public Project(String name, String description){
         this.name = name;
         this.description = description;
+        deliverables = new ArrayList<Deliverable>();
         members = new ArrayList<Student>();
         programs = new HashMap<String, Integer>();
     }
