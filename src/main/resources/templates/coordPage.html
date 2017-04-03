@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"  >
 <head>
-    <meta charset="UTF-8"/>
-    <title>CoordPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link type="text/javascript" src="../static/coordinator.js"/>
+    <title>Coordinators's Page</title>
 </head>
 <body>
-<h1 >Welcome to the Coordinator Page!</h1>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home">Carleton University</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a onclick="myLogout()">Logout</a></li>
+                <script>
+                    function myLogout(){
+                        $.post("/logoutPage");
+                    };
+                </script>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h3>4th Year Projects</h3>
+    </div>
+
+
+    <div class="page-header">
+        <h3 id = "projName"></h3>
+        <h4>Welcome</h4>
+        <br/>
+        <div th:if="${session.signedin}">
+            <script th:inline="javascript">
+                $("#projName").append([[${session.user.firstName}]]);
+
+            </script>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 row">
+            <h3>Send Reminders to Unregistered Unregistered Students</h3>
+            <button class = "btn btn-info btn-sm" onclick="send()">Send</button>
+            <script>
+                function send(){
+                    $.post("/coordPage/sendreminder");
+                };
+            </script>
+        </div>
+    </div>
+</div>
 </body>
 </html>

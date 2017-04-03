@@ -33,6 +33,8 @@ public class Controller {
         this.profRepo = profRepo;
          this.projRepo = projRepo;
         cod =  new Coordinator("Rick","Sanchez","coordinatorricksanchez@gmail.com", "dcba4321");
+
+
         projRepo.save(new Project("default", "do a whole bunch of stuff"));
         projRepo.save(new Project("default2", "do a whole bunch of stuff twice"));
 
@@ -46,7 +48,7 @@ public class Controller {
             boolean signedin = (Boolean) session.getAttribute(SessionVariables.signedin);
             User curUser = (User) session.getAttribute(SessionVariables.user);
             if (signedin == true) {
-                if(curUser instanceof Student) return "coordPage";
+                if(curUser instanceof Coordinator) return "coordPage";
                 String ret = (curUser instanceof Student) ? "studentPage" : "profPage";
                 return ret;
             }
@@ -66,6 +68,10 @@ public class Controller {
         return "profPage";
     }
 
+    @GetMapping({"/coordPage"})
+    public String coordPage(){
+        return "coordPage";
+    }
 
     public StudentRepo getStudentRepo() {
         return studentRepo;
@@ -90,7 +96,7 @@ public class Controller {
            session.setAttribute(SessionVariables.signedin, true);
             ret = "profPage";
         } else if(cod.getEmail().equals(email) && password.matches(cod.getPassword())){
-            session.setAttribute(SessionVariables.user, profRepo.findByEmail(email));
+            session.setAttribute(SessionVariables.user, cod);
             session.setAttribute(SessionVariables.signedin, true);
             ret = "coordPage";
         }
@@ -104,12 +110,22 @@ public class Controller {
     }
 
 
-    @GetMapping(value = "/logoutPage")
+    @PostMapping(value = "/logoutPage")
     public String logout(HttpSession session){
-//        session.removeAttribute(SessionVariables.user);
-//        session.removeAttribute(SessionVariables.signedin);
-//        session.invalidate();
-        return "redirect:home";
+        session.removeAttribute(SessionVariables.user);
+        session.removeAttribute(SessionVariables.signedin);
+        session.invalidate();
+        return "home";
+    }
+
+    @PostMapping(value = "/coordPage/sendreminder")
+    public String sendReminder(){
+        try{
+            cod.contactUnassignedStudents(studentRepo.findAll(), cod.getPassword() );
+        }catch (Exception e){
+            return "errorPage";
+        }
+         return "coordPage";
     }
 
     @GetMapping(value = "/allProjects")
