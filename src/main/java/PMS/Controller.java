@@ -20,20 +20,19 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-
+    private Coordinator cod;
     private StudentRepo studentRepo;
     private profRepo profRepo;
-    private CoordRepo coordRepo;
     private ProjRepo projRepo;
 
 
     @Autowired
 
-    public Controller(StudentRepo studentRepo, profRepo profRepo, ProjRepo projRepo, CoordRepo cordRepo) {
+    public Controller(StudentRepo studentRepo, profRepo profRepo, ProjRepo projRepo) {
         this.studentRepo = studentRepo;
         this.profRepo = profRepo;
-        this.coordRepo = cordRepo;
          this.projRepo = projRepo;
+        cod =  new Coordinator("Rick","Sanchez","coordinatorricksanchez@gmail.com", "dcba4321");
         projRepo.save(new Project("default", "do a whole bunch of stuff"));
         projRepo.save(new Project("default2", "do a whole bunch of stuff twice"));
 
@@ -47,6 +46,7 @@ public class Controller {
             boolean signedin = (Boolean) session.getAttribute(SessionVariables.signedin);
             User curUser = (User) session.getAttribute(SessionVariables.user);
             if (signedin == true) {
+                if(curUser instanceof Student) return "coordPage";
                 String ret = (curUser instanceof Student) ? "studentPage" : "profPage";
                 return ret;
             }
@@ -70,7 +70,7 @@ public class Controller {
     public StudentRepo getStudentRepo() {
         return studentRepo;
     }
-    public CoordRepo getCoordinatorRepo() { return coordRepo; }
+
     public PMS.profRepo getProfRepo() {
         return profRepo;
     }
@@ -89,11 +89,13 @@ public class Controller {
             session.setAttribute(SessionVariables.user, profRepo.findByEmail(email));
            session.setAttribute(SessionVariables.signedin, true);
             ret = "profPage";
-        } else if (coordRepo.existsByEmail(email) && encoder.matches(password, coordRepo.findByEmail(email).getPassword())) {
-            model.addAttribute("user", coordRepo.findByEmail(email));
-            model.addAttribute("signedin", true);
+        } else if(cod.getEmail().equals(email) && password.matches(cod.getPassword())){
+            session.setAttribute(SessionVariables.user, profRepo.findByEmail(email));
+            session.setAttribute(SessionVariables.signedin, true);
             ret = "coordPage";
-        } else {
+        }
+
+        else {
             session.setAttribute(SessionVariables.signedin, false);
             ret = "home";
         }
@@ -155,12 +157,6 @@ public class Controller {
             profRepo.save(p);
 
               ret = "redirect:profPage";
-        } else if (userType.equals("coordinator")) {
-            Coordinator c = new Coordinator(firstName, lastName, email, pw);
-            model.addAttribute("user", c);
-            model.addAttribute("signedin", true);
-            coordRepo.save(c);
-            ret = "coordPage";
         }
 
         else ret = "redirect:error";
