@@ -23,7 +23,7 @@ public class CoordinatorTest {
 
     @Before
     public void runBeforeTestMethod() {
-        cod =  new Coordinator("Joe","Jonas","joe@gmm.com", "12345");
+        cod =  new Coordinator("Rick","Sanchez","coordinatorricksanchez@gmail.com", "dcba4321");
         testList = new ArrayList<Student>();
         testList.add(new Student("Joe","Jonas","obi_el@yahoo.com", "12345"));
         testList.add(new Student("Jod","Jonas","yash.astro@gmail.com", "123455"));
@@ -32,7 +32,7 @@ public class CoordinatorTest {
 
     @Test
     public void notifyStudents() throws Exception{
-        cod.contactUnassignedStudents(testList);
+        cod.contactUnassignedStudents(testList, cod.getPassword());
     }
 
 
