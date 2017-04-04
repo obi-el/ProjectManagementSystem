@@ -34,7 +34,7 @@ public class Controller {
          this.projRepo = projRepo;
         cod =  new Coordinator("Rick","Sanchez","coordinatorricksanchez@gmail.com", "dcba4321");
 
-
+this.studentRepo.save(new Student("jj", "bran","o1722241@mvrht.com", "abram"));
         projRepo.save(new Project("default", "do a whole bunch of stuff"));
         projRepo.save(new Project("default2", "do a whole bunch of stuff twice"));
 
@@ -123,7 +123,7 @@ public class Controller {
         try{
             cod.contactUnassignedStudents(studentRepo.findAll(), cod.getPassword() );
         }catch (Exception e){
-            return "errorPage";
+            return "error";
         }
          return "coordPage";
     }
@@ -138,6 +138,7 @@ public class Controller {
     public String pickProject(HttpSession session,Model model, @RequestParam(value = "projectName", required = true) String projectName){
         User user = (User) session.getAttribute(SessionVariables.user);
         Student user2 = (Student) user;
+        if(user2.hasProject) return"error";
         user2.setMyProject(projRepo.findByName(projectName));
         user2.setHasProject(true);
         model.addAttribute("project", projRepo.findByName(projectName));

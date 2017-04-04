@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link type="text/javascript" src="../static/coordinator.js"/>
+    <script type="text/javascript" src="coordinator.js"></script>
     <title>Coordinators's Page</title>
 </head>
 <body>
@@ -22,7 +22,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
                 <li><a onclick="myLogout()">Logout</a></li>
                 <script>
                     function myLogout(){
@@ -38,13 +37,14 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <h3>4th Year Projects</h3>
+        <h3>Coordinator Page</h3>
     </div>
 
 
     <div class="page-header">
-        <h3 id = "projName"></h3>
-        <h4>Welcome</h4>
+
+        <h4 id = "projName"></h4>
+        <h3>Welcome!</h3>
         <br/>
         <div th:if="${session.signedin}">
             <script th:inline="javascript">
@@ -53,17 +53,43 @@
             </script>
         </div>
     </div>
-
+    <br/>
     <div class="row">
-        <div class="col-md-6 row">
-            <h3>Send Reminders to Unregistered Unregistered Students</h3>
-            <button class = "btn btn-info btn-sm" onclick="send()">Send</button>
+        <div class="row-md-6 centered" style="text-align: center">
+            <h3>Send Reminders to Unregistered Students</h3>
+            <button style="margin: auto; display: block" class = "btn btn-info btn-sm" onclick="send()">Send</button>
             <script>
                 function send(){
                     $.post("/coordPage/sendreminder");
+                    alert("Emails Sent!");
                 };
             </script>
         </div>
+        <div class="row-md-6 ">
+            <h3>Schedule Presentations</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                   <th>9.30</th>
+                    <th>10.00</th>
+                    <th>10.30</th>
+                    <th>11.00</th>
+                    <th>11.30</th>
+                    <th>12.00</th>
+                    <th>12.30</th>
+                    <th>13.00</th>
+                    <th>13.30</th>
+                    <th>14.00</th>
+                    <th>14.30</th>
+                    <th>15.00</th>
+                    <th>15.30</th>
+                </tr>
+                </thead>
+                <tbody id="tableP">
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 </body>

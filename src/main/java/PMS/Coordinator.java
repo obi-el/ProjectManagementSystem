@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.Entity;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -21,14 +22,14 @@ import java.util.Properties;
  */
 @Entity
 public class Coordinator extends User{
-
-
+    private HashMap<String, Integer> presMap;
 
     public Coordinator(){super();}
 
 
     public Coordinator(String firstName, String lastName, String email, String password){
         super(firstName, lastName, email, password);
+        presMap = new HashMap<String, Integer>();
 
     }
 
@@ -77,10 +78,10 @@ public class Coordinator extends User{
             message.setText("Do not forget to register in a project" +"\n \n" + this.getFirstName() + " "+ this.getLastName());
 
             // Send message
-        transport.connect();
-        transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-        transport.close();
-            System.out.println("Sent message successfully....");
+             transport.connect();
+             transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
+             transport.close();
+             System.out.println("Sent message successfully....");
 
 
 
