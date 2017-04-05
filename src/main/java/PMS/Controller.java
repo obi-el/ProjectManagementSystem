@@ -3,14 +3,20 @@ package PMS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
-
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by zeningjiang on 3/2/2017.
@@ -28,12 +34,11 @@ public class Controller {
 
 
     @Autowired
-
     public Controller(StudentRepo studentRepo, profRepo profRepo, ProjRepo projRepo, CoordRepo cordRepo) {
         this.studentRepo = studentRepo;
         this.profRepo = profRepo;
         this.coordRepo = cordRepo;
-         this.projRepo = projRepo;
+        this.projRepo = projRepo;
         projRepo.save(new Project("default", "do a whole bunch of stuff"));
         projRepo.save(new Project("default2", "do a whole bunch of stuff twice"));
 
@@ -42,7 +47,7 @@ public class Controller {
     @GetMapping({"/home", "", "/"})
     public String firstPage(Model model, HttpSession session) {
         model.addAttribute("login", new User());
-        if(session.getAttribute(SessionVariables.signedin) == null)return "home";
+        if (session.getAttribute(SessionVariables.signedin) == null) return "home";
         else {
             boolean signedin = (Boolean) session.getAttribute(SessionVariables.signedin);
             User curUser = (User) session.getAttribute(SessionVariables.user);
@@ -57,12 +62,12 @@ public class Controller {
     }
 
     @GetMapping({"/studentPage"})
-    public String studentPage(){
+    public String studentPage() {
         return "studentPage";
     }
 
     @GetMapping({"/profPage"})
-    public String profPage(){
+    public String profPage() {
         return "profPage";
     }
 
@@ -70,7 +75,11 @@ public class Controller {
     public StudentRepo getStudentRepo() {
         return studentRepo;
     }
-    public CoordRepo getCoordinatorRepo() { return coordRepo; }
+
+    public CoordRepo getCoordinatorRepo() {
+        return coordRepo;
+    }
+
     public PMS.profRepo getProfRepo() {
         return profRepo;
     }
@@ -87,7 +96,7 @@ public class Controller {
             ret = "studentPage";
         } else if (profRepo.existsByEmail(email) && encoder.matches(password, profRepo.findByEmail(email).getPassword())) {
             session.setAttribute(SessionVariables.user, profRepo.findByEmail(email));
-           session.setAttribute(SessionVariables.signedin, true);
+            session.setAttribute(SessionVariables.signedin, true);
             ret = "profPage";
         } else if (coordRepo.existsByEmail(email) && encoder.matches(password, coordRepo.findByEmail(email).getPassword())) {
             model.addAttribute("user", coordRepo.findByEmail(email));
@@ -103,7 +112,7 @@ public class Controller {
 
 
     @GetMapping(value = "/logoutPage")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.removeAttribute(SessionVariables.user);
         session.removeAttribute(SessionVariables.signedin);
         session.invalidate();
@@ -111,13 +120,14 @@ public class Controller {
     }
 
     @GetMapping(value = "/allProjects")
-    public @ResponseBody
-    List<Project> getProjects(){
+    public
+    @ResponseBody
+    List<Project> getProjects() {
         return this.projRepo.findAll();
     }
 
     @PostMapping("/studentPage/pickProject")
-    public String pickProject(HttpSession session,Model model, @RequestParam(value = "projectName", required = true) String projectName){
+    public String pickProject(HttpSession session, Model model, @RequestParam(value = "projectName", required = true) String projectName) {
         User user = (User) session.getAttribute(SessionVariables.user);
         Student user2 = (Student) user;
         user2.setMyProject(projRepo.findByName(projectName));
@@ -132,10 +142,10 @@ public class Controller {
 
 
     @PostMapping(value = "/register")
-    public String registration(Model model,HttpSession session, @RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "userType", required = true) String userType) {
+    public String registration(Model model, HttpSession session, @RequestParam(value = "firstName", required = true) String firstName, @RequestParam(value = "lastName", required = true) String lastName, @RequestParam(value = "email", required = true) String email, @RequestParam(value = "password", required = true) String password, @RequestParam(value = "userType", required = true) String userType) {
         String ret;
         model.addAttribute("login", new Register());
-        if(studentRepo.existsByEmail(email) || profRepo.existsByEmail(email)){
+        if (studentRepo.existsByEmail(email) || profRepo.existsByEmail(email)) {
             session.setAttribute(SessionVariables.signedin, false);
             return "home";
 
@@ -144,29 +154,54 @@ public class Controller {
         String pw = encoder.encode(password);
         if (userType.equals("student")) {
             Student s = new Student(firstName, lastName, email, pw);
-           session.setAttribute(SessionVariables.user, s);
+            session.setAttribute(SessionVariables.user, s);
             session.setAttribute(SessionVariables.signedin, true);
             studentRepo.save(s);
             ret = "redirect:studentPage";
         } else if (userType.equals("professor")) {
             Professor p = new Professor(firstName, lastName, email, pw);
-           session.setAttribute(SessionVariables.user, p);
-           session.setAttribute(SessionVariables.signedin, true);
+            session.setAttribute(SessionVariables.user, p);
+            session.setAttribute(SessionVariables.signedin, true);
             profRepo.save(p);
 
-              ret = "redirect:profPage";
+            ret = "redirect:profPage";
         } else if (userType.equals("coordinator")) {
             Coordinator c = new Coordinator(firstName, lastName, email, pw);
             model.addAttribute("user", c);
             model.addAttribute("signedin", true);
             coordRepo.save(c);
             ret = "coordPage";
-        }
-
-        else ret = "redirect:error";
+        } else ret = "redirect:error";
 
 
         return ret;
 
     }
+
+    @RequestMapping("/file")
+    public String file() {
+        return "/file";
+    }
+
+    @RequestMapping("/upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        if (!file.isEmpty()) {
+            try {
+                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(file.getOriginalFilename())));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "Upload error," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Upload error," + e.getMessage();
+            }
+            return "redirect:file";
+        } else {
+            return "File Empty";
+        }
+    }
 }
+
