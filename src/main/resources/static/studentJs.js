@@ -7,13 +7,11 @@ $(document).ready(function() {
     //     event.preventDefault();
     //
     // });
-
-
     var btn = $("but1");
     btn.disabled = true;
+});
 
 
-})
 
 
 

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" src="studentPage.css"/>
+    <link rel="canonical" href="https://www.w3schools.com/bootstrap/bootstrap_modal.asp"/>
+    <script src="studentJs.js"></script>
+    <title>Files Upload</title>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home">Carleton University</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="./studentPage" class="external">Home</a></li>
+                <li class="active"><a href="#file">Upload</a></li>
+                <li><a href="#logout" onclick="myLogout()">Logout</a></li>
+                <script>
+                    function myLogout() {
+                        location.href = "/logoutPage";
+                    }
+                </script>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+        <h1>Submission</h1>
+    </div>
+
+    <div class="page-header">
+        <h1>Proposal</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+        <span class="btn btn-primary btn-file">
+        <input type="file" name="file"/>
+        <input type="submit" value="submit"/>
+        </span>
+        <span class="fileupload-preview"></span>
+    </form>
+    </div>
+
+    <div class="page-header">
+        <h1>Progress Report</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+        <form method="POST" enctype="multipart/form-data" action="/upload">
+        <span class="btn btn-primary btn-file">
+        <input type="file" name="file" onchange="readURL(this);"/>
+        <input type="submit" value="submit"/>
+        </span>
+            <span class="fileupload-preview"></span>
+        </form>
+    </div>
+
+    <div class="page-header">
+        <h1>Final Report</h1>
+    </div>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+        <form method="POST" enctype="multipart/form-data" action="/upload">
+        <span class="btn btn-primary btn-file">
+        <input type="file" name="file"/>
+        <input type="submit" value="submit"/>
+        </span>
+            <span class="fileupload-preview"></span>
+        </form>
+    </div>
+
+</div>
+
+
+</body>
+</html>
