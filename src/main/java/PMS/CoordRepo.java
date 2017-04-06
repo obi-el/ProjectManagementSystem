@@ -12,6 +12,6 @@ public interface CoordRepo extends CrudRepository<Coordinator, Integer> {
     List<Coordinator> findByFirstName(String firstname);
     List<Coordinator> findAll();
     boolean existsByEmail(String email);
-    Student findByEmail(String Email);
+    Coordinator findByEmail(String Email);
 
 }

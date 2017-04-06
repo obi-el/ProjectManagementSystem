@@ -170,7 +170,7 @@ public class Controller {
             model.addAttribute("user", c);
             model.addAttribute("signedin", true);
             coordRepo.save(c);
-            ret = "coordPage";
+            ret = "redirect:coordPage";
         } else ret = "redirect:error";
 
 
