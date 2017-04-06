@@ -203,5 +203,11 @@ public class Controller {
             return "File Empty";
         }
     }
+
+    @PostMapping("/create_project")
+    public void createProject(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "description", required = true) String description){
+//         createProject(name, description);
+//        add to project repo
+    }
 }
 
