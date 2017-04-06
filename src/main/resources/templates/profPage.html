@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -22,8 +22,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#setting">Setting</a></li>
+                <!--<li class="active"><a href="#">Home</a></li>
+                <li><a href="#setting">Setting</a></li>-->
                 <li><a href="#logout" onclick="myLogout()">Logout</a></li>
                 <script>
                     function myLogout(){
@@ -78,5 +78,54 @@
         </div>
     </div>
 </div>
-</body>
+</body><div class="container theme-showcase" role="main">
+
+
+    <div>
+        <h4>Create new projects</h4>
+        <div id="select">
+            <h3 id="projName"></h3>
+            <br/>
+            <button type="button" id="but1" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">New
+                Project
+            </button>
+        </div>
+        <!--<div th:if="${session.user.hasProject}">
+            <script th:inline="javascript">
+                $("#projName").append([[${project.name}]]);
+                $("#but1").disabled(true);
+            </script>
+        </div>-->
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Project</h4>
+                    </div>
+                    <div class="modal-body" id="preview">
+                        <form class="form-newproject" th:action="@{/create_project}" id="newprojform" method="post">
+                            <input type="text" id="name" name ="name" th:field="*{name}"  class="form-control" placeholder="Project Name" required="" autofocus=""/>
+                            <!--<input type="text" id="description" name ="description" th:field="*{description}" class="form-control" placeholder="Description" required="" autofocus=""/>-->
+                            <textarea name="description" id="description" class="form-control" required="" autofocus="" placeholder="Enter the description of the project here..." style="resize: vertical;"></textarea>
+                            <br/>
+                            <input type="hidden"
+                                   name="${_csrf.parameterName}"
+                                   value="${_csrf.token}"/>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" onsubmit="createNewProject()">Finish</button>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 </html>
