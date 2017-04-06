@@ -65,11 +65,82 @@ public class mockMVCApplicationTest {
         this.mockMvc.perform(post("/register")
                 .with(csrf())
                 .param("firstName","joe" )
-        .param("lastName","joe")
-        .param("email", "a@a.com")
-        .param("password", "0000")
-        .param("userType", "student")).andDo(print()).andExpect(status().is3xxRedirection())
-        .andExpect(content().string(containsString("")));
+                .param("lastName","joe")
+                .param("email", "a@a.com")
+                .param("password", "0000")
+                .param("userType", "student")).andDo(print()).andExpect(status().is3xxRedirection())
+                .andExpect(content().string(containsString("")));
+
+        this.mockMvc.perform(post("/signin")
+                .with(csrf())
+                .param("firstName","joe" )
+                .param("lastName","joe")
+                .param("email", "a@a.com")
+                .param("password", "0000")
+                .param("userType", "student")).andDo(print()).andExpect(status().is2xxSuccessful())
+                .andExpect(content().string(containsString("")));
+
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void shouldReturnProfessorPage() throws Exception {
+
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("home")));
+
+        this.mockMvc.perform(post("/register")
+                .with(csrf())
+                .param("firstName","prof" )
+                .param("lastName","prof")
+                .param("email", "prof@email.com")
+                .param("password", "12345")
+                .param("userType", "professor")).andDo(print()).andExpect(status().is3xxRedirection())
+                .andExpect(content().string(containsString("")));
+
+        this.mockMvc.perform(post("/signin")
+                .with(csrf())
+                .param("firstName","prof" )
+                .param("lastName","prof")
+                .param("email", "prof@email.com")
+                .param("password", "12345")
+                .param("userType", "professor")).andDo(print()).andExpect(status().is2xxSuccessful())
+                .andExpect(content().string(containsString("")));
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void shouldReturnCoordinatorPage() throws Exception {
+
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("home")));
+
+        this.mockMvc.perform(post("/signin")
+                .with(csrf())
+                .param("firstName","Rick" )
+                .param("lastName","Sanchez")
+                .param("email", "coordinatorricksanchez@gmail.com")
+                .param("password", "dcba4321")
+                .param("userType", "coordinator")).andDo(print()).andExpect(status().is2xxSuccessful())
+                .andExpect(content().string(containsString("")));
+
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    public void duplicateStudentTest() throws Exception {
+
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("home")));
+
+        this.mockMvc.perform(post("/register")
+                .with(csrf())
+                .param("firstName","joe" )
+                .param("lastName","joe")
+                .param("email", "a@a.com")
+                .param("password", "0000")
+                .param("userType", "student")).andDo(print()).andExpect(status().is2xxSuccessful())
+                .andExpect(content().string(containsString("")));
 
     }
 
