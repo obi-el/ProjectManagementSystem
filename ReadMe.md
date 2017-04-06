@@ -78,6 +78,14 @@ LeBlanc - implemented sign up and sign in use cases with Mathieu</span></p>
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Obinna Elobi
 - Session Management , Finished authentication and authorization with spring security, started student Picking project function, logout function</span></p>
 
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Mathieu
+LeBlanc - implemented Coordinator into Repos and Register Page, started work on Coordinator Page</span></p>
+
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Yash Patel -
+Implemented Professor's view - frontend and backend</span></p>
+
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Zening Jiang - Finished upload files, logout, display in student page</span></p>
+
 </div>
 
 </body>
