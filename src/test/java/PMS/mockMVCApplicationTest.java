@@ -115,21 +115,12 @@ public class mockMVCApplicationTest {
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("home")));
 
-        this.mockMvc.perform(post("/register")
-                .with(csrf())
-                .param("firstName","cord" )
-                .param("lastName","cord")
-                .param("email", "cord@email.com")
-                .param("password", "12345")
-                .param("userType", "coordinator")).andDo(print()).andExpect(status().is3xxRedirection())
-                .andExpect(content().string(containsString("")));
-
         this.mockMvc.perform(post("/signin")
                 .with(csrf())
-                .param("firstName","cord" )
-                .param("lastName","cord")
-                .param("email", "cord@email.com")
-                .param("password", "12345")
+                .param("firstName","Rick" )
+                .param("lastName","Sanchez")
+                .param("email", "coordinatorricksanchez@gmail.com")
+                .param("password", "dcba4321")
                 .param("userType", "coordinator")).andDo(print()).andExpect(status().is2xxSuccessful())
                 .andExpect(content().string(containsString("")));
 

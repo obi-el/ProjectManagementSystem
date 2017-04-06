@@ -178,8 +178,6 @@ public class Controller {
             session.setAttribute(SessionVariables.user, p);
             session.setAttribute(SessionVariables.signedin, true);
             profRepo.save(p);
-
-
               ret = "redirect:profPage";
         }
 
