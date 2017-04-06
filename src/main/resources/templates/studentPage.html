@@ -86,7 +86,9 @@
                             function pickProject(el) {
 
                                 alert($(el).text());
-                                $.post('/studentPage/pickProject', {projectName: "" + $(el).text()});
+
+                                $.post('/studentPage/pickProject', { projectName : $(el).text()});
+
 
                             }
                             ;
