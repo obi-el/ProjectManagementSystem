@@ -9,6 +9,11 @@ $(document).ready(function() {
     // });
     var btn = $("but1");
     btn.disabled = true;
+
+/*    $("#div1").hide();
+    $("#preview").on("click", function() {
+        $("#div1").toggle();
+    });*/
 });
 
 
