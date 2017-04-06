@@ -102,6 +102,9 @@
         </div>
 
         <h3>Current Project</h3>
+        <!--<div id="current">
+        <p th:text="${session.user.myProject.name}">current</p>
+        </div>-->
     </div>
 
     <!--<div>
@@ -112,11 +115,9 @@
     </div>-->
 
     <div id="div1" style="display: none;">
-    <div>
-        <form th:action="@{/studentPage}" th:object="${user}" method="post">
+    <div method="post">
             <h1>Supervisor</h1>
-            <p>${user.projects[0].supervisor}</p>
-        </form>
+            <!--<p th:text="${session.user.myProject.supervisor.firstName}">supervisor</p>-->
     </div>
 
 
@@ -127,7 +128,7 @@
     <div class="row">
 
         <div class="col-md-6">
-            <form th:action="@{/studentPage}" th:object="${user}" method="post">
+            <form th:object="${session.user}" method="post">
                 <table class="table">
                     <thead>
                     <tr>
@@ -139,22 +140,22 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>${projects[0].members[0].id}</td>
-                        <td>${projects[0].members[0].firstName}</td>
-                        <td>${projects[0].members[0].lastName}</td>
-                        <td>${projects[0].members[0].email}</td>
+                        <!--<td th:text="${myProject.members[0].id}">id</td>
+                        <td th:text="${myProject.members[0].firstName}">firstname</td>
+                        <td th:text="${myProject.members[0].lastName}">lastname</td>
+                        <td th:text="${myProject.members[0].email}">email</td>-->
                     </tr>
                     <tr>
-                        <td>${projects[0].members[1].id}</td>
-                        <td>${projects[0].members[1].firstName}</td>
-                        <td>${projects[0].members[1].lastName}</td>
-                        <td>${projects[0].members[1].email}</td>
+                        <!--<td th:text="${myProject.members[1].id}">id</td>
+                        <td th:text="${myProject.members[1].firstName}">firstname</td>
+                        <td th:text="${myProject.members[1].lastName}">lastname</td>
+                        <td th:text="${myProject.members[1].email}">email</td>-->
                     </tr>
                     <tr>
-                        <td>${projects[0].members[2].id}</td>
-                        <td>${projects[0].members[2].firstName}</td>
-                        <td>${projects[0].members[2].lastName}</td>
-                        <td>${projects[0].members[2].email}</td>
+                        <!--<td th:text="${myProject.members[2].id}">id</td>
+                        <td th:text="${myProject.members[2].firstName}">firstname</td>
+                        <td th:text="${myProject.members[2].lastName}">lastname</td>
+                        <td th:text="${myProject.members[2].email}">email</td>-->
                     </tr>
                     </tbody>
                 </table>
