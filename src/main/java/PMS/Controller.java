@@ -114,12 +114,12 @@ public class Controller {
 
 
 
-    @PostMapping(value = "/logoutPage")
+    @GetMapping(value = "/logoutPage")
     public String logout(HttpSession session){
         session.removeAttribute(SessionVariables.user);
         session.removeAttribute(SessionVariables.signedin);
         session.invalidate();
-        return "home";
+        return "redirect:home";
     }
 
     @PostMapping(value = "/coordPage/sendreminder")
