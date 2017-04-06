@@ -51,11 +51,13 @@
 
     <div>
         <h1>Project</h1>
+        <div id="select">
         <h3 id="projName"></h3>
         <br/>
         <button type="button" id="but1" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Pick
             Project
         </button>
+        </div>
         <div th:if="${session.user.hasProject}">
             <script th:inline="javascript">
                 $("#projName").append([[${project.name}]]);
@@ -163,7 +165,7 @@
 
     <script type="text/javascript">
         $("#preview").on("click", function() {
-            $("#div1").toggle();
+            $("#div1, #select").toggle();
         });
     </script>
 
