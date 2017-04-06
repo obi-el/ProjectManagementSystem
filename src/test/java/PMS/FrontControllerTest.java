@@ -56,14 +56,17 @@ public class FrontControllerTest {
 
     @Test
     public void repoAddTest() throws Exception{
-       controller.getStudentRepo().save(stud1);
-       boolean ans = controller.getStudentRepo().existsByEmail("stud1@email.com");
-       Assert.isTrue(ans, "Should be in there");
+        //Student
+        controller.getStudentRepo().save(stud1);
+        boolean ans = controller.getStudentRepo().existsByEmail("stud1@email.com");
+        Assert.isTrue(ans, "Should be in there");
 
+        //Professor
         controller.getProfRepo().save(prof1);
         ans = controller.getProfRepo().existsByEmail("prof1@email.com");
         Assert.isTrue(ans, "Should be in there");
 
+        //Coordinator
         controller.getCoordinatorRepo().save(coord1);
         ans = controller.getCoordinatorRepo().existsByEmail("coord1@email.com");
         Assert.isTrue(ans, "Should be in there");
@@ -73,36 +76,42 @@ public class FrontControllerTest {
 
     @Test
     public void repoDeleteTest() throws Exception{
+        //Student
+        long startcount = controller.getStudentRepo().count();
         Student s = new Student("stud2", "stud2", "stud2@email.com", "12345");
         controller.getStudentRepo().save(s);
         assertThat(controller.getStudentRepo().existsByEmail(s.getEmail())).isTrue();
         long ans = controller.getStudentRepo().count();
-        assertThat(ans).isEqualTo(2);
+        assertThat(ans).isEqualTo(startcount+1);
         controller.getStudentRepo().delete(s);
         ans = controller.getStudentRepo().count();
-        assertThat(ans).isEqualTo(1);
+        assertThat(ans).isEqualTo(startcount);
         assertThat(controller.getStudentRepo().existsByEmail(s.getEmail())).isFalse();
         assertThat(controller.getStudentRepo().existsByEmail(stud1.getEmail())).isTrue();
 
+        //Professor
+        startcount = controller.getProfRepo().count();
         Professor p = new Professor("prof2","prof2","prof2@email.com", "12345");
         controller.getProfRepo().save(p);
         assertThat(controller.getProfRepo().existsByEmail(p.getEmail())).isTrue();
         ans = controller.getProfRepo().count();
-        assertThat(ans).isEqualTo(2);
+        assertThat(ans).isEqualTo(startcount+1);
         controller.getProfRepo().delete(p);
         ans = controller.getProfRepo().count();
-        assertThat(ans).isEqualTo(1);
+        assertThat(ans).isEqualTo(startcount);
         assertThat(controller.getProfRepo().existsByEmail(p.getEmail())).isFalse();
         assertThat(controller.getProfRepo().existsByEmail(prof1.getEmail())).isTrue();
 
+        //Coordinator
+        startcount = controller.getCoordinatorRepo().count();
         Coordinator c = new Coordinator("coord2","coord2","coord2@email.com","12345");
         controller.getCoordinatorRepo().save(c);
         assertThat(controller.getCoordinatorRepo().existsByEmail(c.getEmail())).isTrue();
         ans = controller.getCoordinatorRepo().count();
-        assertThat(ans).isEqualTo(2);
+        assertThat(ans).isEqualTo(startcount+1);
         controller.getCoordinatorRepo().delete(c);
         ans = controller.getCoordinatorRepo().count();
-        assertThat(ans).isEqualTo(1);
+        assertThat(ans).isEqualTo(startcount);
         assertThat(controller.getCoordinatorRepo().existsByEmail(c.getEmail())).isFalse();
         assertThat(controller.getCoordinatorRepo().existsByEmail(coord1.getEmail())).isTrue();
 
@@ -115,10 +124,5 @@ public class FrontControllerTest {
         Assert.isTrue(ans.toString().equals(stud1.toString()), "Should be the same");
 
     }
-
-    public void testF() throws Exception{
-
-    }
-
 
 }
