@@ -86,7 +86,9 @@
                             function pickProject(el) {
 
                                 alert($(el).text());
-                                $.post('/studentPage/pickProject', {projectName: "" + $(el).text()});
+
+                                $.post('/studentPage/pickProject', { projectName : $(el).text()});
+
 
                             }
                             ;
@@ -128,6 +130,7 @@
     <div class="row">
 
         <div class="col-md-6">
+
             <form th:object="${session.user}" method="post">
                 <table class="table">
                     <thead>
