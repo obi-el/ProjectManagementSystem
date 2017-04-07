@@ -13,6 +13,7 @@
 
 <p class=MsoNormal align=center style='text-align:center'><b><span
 style='font-size:18.0pt;line-height:115%'>4th Year Project Management System</span></b></p>
+<h3>https://rocky-cove-57591.herokuapp.com/</h3
 
 <p class=MsoNormal><b><span style='font-size:13.0pt;line-height:115%'>&nbsp;</span></b></p>
 
@@ -85,6 +86,13 @@ LeBlanc - implemented Coordinator into Repos and Register Page, started work on 
 Implemented Professor's view - frontend and backend</span></p>
 
 <p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Zening Jiang - Finished upload files, logout, display in student page</span></p>
+
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Milestone 3:</span></p>
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Obinna Elobi
+- COmpleted Coordinator: Remind unregistered students use case, Wrote Back end stuff for grading projects</span></p>
+
+<p class=MsoNormal><span style='font-size:13.0pt;line-height:115%'>Yash Patel -
+WOrked on professor creating project - Incomplete</span></p>
 
 </div>
 
